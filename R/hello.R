@@ -92,7 +92,6 @@ colModes <- function(data) {
 }
 
 #--------- critical value
-# Fungsi untuk menghitung nilai kritis
 hitung_nilai_kritis <- function(n, alpha) {
   # Tabel nilai kritis
   tabel_kritis <- data.frame(
@@ -113,8 +112,13 @@ hitung_nilai_kritis <- function(n, alpha) {
     stop(paste("Nilai alpha tidak valid. Gunakan 0.01, 0.05, atau 0.1. Nilai alpha saat ini:", alpha))
   }
 
+  # Jika n lebih besar dari 300, gunakan nilai n = 300
+  if (n > max(tabel_kritis$n)) {
+    return(tabel_kritis[[kolom_alpha]][nrow(tabel_kritis)])
+  }
+
   # Validasi n
-  if (n < min(tabel_kritis$n) || n > max(tabel_kritis$n)) {
+  if (n < min(tabel_kritis$n)) {
     stop(paste("Nilai n di luar jangkauan tabel kritis. Nilai n saat ini:", n))
   }
 
