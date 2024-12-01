@@ -14,6 +14,9 @@
 #   Test Package:              'Ctrl + Shift + T'
 
 #=============== MULTIVARIATE
+library(dplyr)
+library(ggplot2)
+
 #----------- Generate Data-----------
 generate_dataset <- function(n_samples, n_features, multivariate_normal = TRUE, data_range = c(0, 1)) {
   if (multivariate_normal) {
